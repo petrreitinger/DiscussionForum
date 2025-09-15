@@ -1,0 +1,16 @@
+-------------------------------------------------------------------------------
+Test set: discussionforum.Service.CommentServiceTest
+-------------------------------------------------------------------------------
+Tests run: 13, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.299 s <<< FAILURE! -- in discussionforum.Service.CommentServiceTest
+discussionforum.Service.CommentServiceTest.addReply_ShouldThrowException_WhenParentCommentNotFound -- Time elapsed: 0.007 s <<< ERROR!
+org.mockito.exceptions.misusing.UnnecessaryStubbingException: 
+
+Unnecessary stubbings detected.
+Clean & maintainable test code requires zero unnecessary code.
+Following stubbings are unnecessary (click to navigate to relevant line of code):
+  1. -> at discussionforum.Service.CommentServiceTest.addReply_ShouldThrowException_WhenParentCommentNotFound(CommentServiceTest.java:168)
+Please remove unnecessary stubbings or use 'lenient' strictness. More info: javadoc for UnnecessaryStubbingException class.
+	at org.mockito.junit.jupiter.MockitoExtension.afterEach(MockitoExtension.java:197)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+

@@ -1,0 +1,35 @@
+-------------------------------------------------------------------------------
+Test set: discussionforum.Service.CommunityServiceTest
+-------------------------------------------------------------------------------
+Tests run: 19, Failures: 2, Errors: 1, Skipped: 0, Time elapsed: 0.124 s <<< FAILURE! -- in discussionforum.Service.CommunityServiceTest
+discussionforum.Service.CommunityServiceTest.getJoinedCommunities_ShouldReturnUserCommunities_WhenUserExists -- Time elapsed: 0.011 s <<< FAILURE!
+java.lang.AssertionError: 
+
+Expected size: 1 but was: 0 in:
+[]
+	at discussionforum.Service.CommunityServiceTest.getJoinedCommunities_ShouldReturnUserCommunities_WhenUserExists(CommunityServiceTest.java:272)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+discussionforum.Service.CommunityServiceTest.getPostCount_ShouldReturnCorrectCount -- Time elapsed: 0.001 s <<< ERROR!
+org.mockito.exceptions.misusing.UnnecessaryStubbingException: 
+
+Unnecessary stubbings detected.
+Clean & maintainable test code requires zero unnecessary code.
+Following stubbings are unnecessary (click to navigate to relevant line of code):
+  1. -> at discussionforum.Service.CommunityServiceTest.getPostCount_ShouldReturnCorrectCount(CommunityServiceTest.java:291)
+Please remove unnecessary stubbings or use 'lenient' strictness. More info: javadoc for UnnecessaryStubbingException class.
+	at org.mockito.junit.jupiter.MockitoExtension.afterEach(MockitoExtension.java:197)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+discussionforum.Service.CommunityServiceTest.getJoinedCommunities_ShouldThrowException_WhenUserNotExists -- Time elapsed: 0.001 s <<< FAILURE!
+java.lang.AssertionError: 
+
+Expecting code to raise a throwable.
+	at discussionforum.Service.CommunityServiceTest.getJoinedCommunities_ShouldThrowException_WhenUserNotExists(CommunityServiceTest.java:283)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+

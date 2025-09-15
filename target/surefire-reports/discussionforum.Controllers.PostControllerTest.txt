@@ -1,0 +1,126 @@
+-------------------------------------------------------------------------------
+Test set: discussionforum.Controllers.PostControllerTest
+-------------------------------------------------------------------------------
+Tests run: 16, Failures: 11, Errors: 0, Skipped: 0, Time elapsed: 0.564 s <<< FAILURE! -- in discussionforum.Controllers.PostControllerTest
+discussionforum.Controllers.PostControllerTest.addReply_ShouldRedirectToPost_WhenValidReply -- Time elapsed: 0.022 s <<< FAILURE!
+java.lang.AssertionError: Range for response status value 500 expected:<REDIRECTION> but was:<SERVER_ERROR>
+	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:59)
+	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:122)
+	at org.springframework.test.web.servlet.result.StatusResultMatchers.lambda$is3xxRedirection$4(StatusResultMatchers.java:87)
+	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:214)
+	at discussionforum.Controllers.PostControllerTest.addReply_ShouldRedirectToPost_WhenValidReply(PostControllerTest.java:291)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+discussionforum.Controllers.PostControllerTest.newPostPage_ShouldRedirectToLogin_WhenNotAuthenticated -- Time elapsed: 0.003 s <<< FAILURE!
+java.lang.AssertionError: Range for response status value 401 expected:<REDIRECTION> but was:<CLIENT_ERROR>
+	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:59)
+	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:122)
+	at org.springframework.test.web.servlet.result.StatusResultMatchers.lambda$is3xxRedirection$4(StatusResultMatchers.java:87)
+	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:214)
+	at discussionforum.Controllers.PostControllerTest.newPostPage_ShouldRedirectToLogin_WhenNotAuthenticated(PostControllerTest.java:105)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+discussionforum.Controllers.PostControllerTest.votePost_ShouldReturnErrorResponse_WhenServiceThrowsException -- Time elapsed: 0.007 s <<< FAILURE!
+java.lang.AssertionError: Status expected:<400> but was:<302>
+	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:59)
+	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:122)
+	at org.springframework.test.web.servlet.result.StatusResultMatchers.lambda$matcher$9(StatusResultMatchers.java:637)
+	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:214)
+	at discussionforum.Controllers.PostControllerTest.votePost_ShouldReturnErrorResponse_WhenServiceThrowsException(PostControllerTest.java:333)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+discussionforum.Controllers.PostControllerTest.createPost_ShouldRedirectToPost_WhenValidInput -- Time elapsed: 0.014 s <<< FAILURE!
+java.lang.AssertionError: Range for response status value 500 expected:<REDIRECTION> but was:<SERVER_ERROR>
+	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:59)
+	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:122)
+	at org.springframework.test.web.servlet.result.StatusResultMatchers.lambda$is3xxRedirection$4(StatusResultMatchers.java:87)
+	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:214)
+	at discussionforum.Controllers.PostControllerTest.createPost_ShouldRedirectToPost_WhenValidInput(PostControllerTest.java:121)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+discussionforum.Controllers.PostControllerTest.createPost_ShouldReturnFormWithErrors_WhenInvalidInput -- Time elapsed: 0.010 s <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<500>
+	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:59)
+	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:122)
+	at org.springframework.test.web.servlet.result.StatusResultMatchers.lambda$matcher$9(StatusResultMatchers.java:637)
+	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:214)
+	at discussionforum.Controllers.PostControllerTest.createPost_ShouldReturnFormWithErrors_WhenInvalidInput(PostControllerTest.java:139)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+discussionforum.Controllers.PostControllerTest.votePost_ShouldReturnUnauthorized_WhenNotAuthenticated -- Time elapsed: 0.003 s <<< FAILURE!
+java.lang.AssertionError: Range for response status value 401 expected:<REDIRECTION> but was:<CLIENT_ERROR>
+	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:59)
+	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:122)
+	at org.springframework.test.web.servlet.result.StatusResultMatchers.lambda$is3xxRedirection$4(StatusResultMatchers.java:87)
+	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:214)
+	at discussionforum.Controllers.PostControllerTest.votePost_ShouldReturnUnauthorized_WhenNotAuthenticated(PostControllerTest.java:319)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+discussionforum.Controllers.PostControllerTest.downvotePost_ShouldReturnUpdatedScore_WhenValidVote -- Time elapsed: 0.006 s <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<302>
+	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:59)
+	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:122)
+	at org.springframework.test.web.servlet.result.StatusResultMatchers.lambda$matcher$9(StatusResultMatchers.java:637)
+	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:214)
+	at discussionforum.Controllers.PostControllerTest.downvotePost_ShouldReturnUpdatedScore_WhenValidVote(PostControllerTest.java:192)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+discussionforum.Controllers.PostControllerTest.viewPost_ShouldReturnPostDetailView_WhenPostExists -- Time elapsed: 0.036 s <<< FAILURE!
+java.lang.AssertionError: Model attribute 'communities' does not exist
+	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:37)
+	at org.springframework.test.util.AssertionErrors.assertTrue(AssertionErrors.java:70)
+	at org.springframework.test.util.AssertionErrors.assertNotNull(AssertionErrors.java:106)
+	at org.springframework.test.web.servlet.result.ModelResultMatchers.lambda$attributeExists$2(ModelResultMatchers.java:85)
+	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:214)
+	at discussionforum.Controllers.PostControllerTest.viewPost_ShouldReturnPostDetailView_WhenPostExists(PostControllerTest.java:160)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+discussionforum.Controllers.PostControllerTest.addComment_ShouldRedirectToPost_WhenValidComment -- Time elapsed: 0.012 s <<< FAILURE!
+java.lang.AssertionError: Range for response status value 500 expected:<REDIRECTION> but was:<SERVER_ERROR>
+	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:59)
+	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:122)
+	at org.springframework.test.web.servlet.result.StatusResultMatchers.lambda$is3xxRedirection$4(StatusResultMatchers.java:87)
+	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:214)
+	at discussionforum.Controllers.PostControllerTest.addComment_ShouldRedirectToPost_WhenValidComment(PostControllerTest.java:258)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+discussionforum.Controllers.PostControllerTest.votePost_ShouldReturnUpdatedScore_WhenValidVote -- Time elapsed: 0.007 s <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<302>
+	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:59)
+	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:122)
+	at org.springframework.test.web.servlet.result.StatusResultMatchers.lambda$matcher$9(StatusResultMatchers.java:637)
+	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:214)
+	at discussionforum.Controllers.PostControllerTest.votePost_ShouldReturnUpdatedScore_WhenValidVote(PostControllerTest.java:176)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+discussionforum.Controllers.PostControllerTest.addComment_ShouldRedirectWithError_WhenEmptyComment -- Time elapsed: 0.015 s <<< FAILURE!
+java.lang.AssertionError: Range for response status value 500 expected:<REDIRECTION> but was:<SERVER_ERROR>
+	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:59)
+	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:122)
+	at org.springframework.test.web.servlet.result.StatusResultMatchers.lambda$is3xxRedirection$4(StatusResultMatchers.java:87)
+	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:214)
+	at discussionforum.Controllers.PostControllerTest.addComment_ShouldRedirectWithError_WhenEmptyComment(PostControllerTest.java:272)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+

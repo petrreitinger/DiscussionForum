@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: discussionforum.Service.PostServiceTest
+-------------------------------------------------------------------------------
+Tests run: 19, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.113 s -- in discussionforum.Service.PostServiceTest

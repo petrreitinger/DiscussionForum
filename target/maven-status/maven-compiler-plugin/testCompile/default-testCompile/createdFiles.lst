@@ -1,0 +1,6 @@
+discussionforum\Service\CommentServiceTest.class
+discussionforum\ForumApplicationIntegrationTest.class
+discussionforum\Service\CommunityServiceTest.class
+discussionforum\Controllers\HomeControllerTest.class
+discussionforum\Service\PostServiceTest.class
+discussionforum\Controllers\PostControllerTest.class
