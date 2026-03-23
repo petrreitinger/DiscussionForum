@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Discussion Forum</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Custom Forum-style CSS -->
+    <link rel="stylesheet" th:href="@{/css/forum-style.css}">
+</head>
+<body class="bg-light">
+
+<div class="auth-container">
+    <!-- Logo/Header -->
+    <div class="text-center mb-4">
+        <a th:href="@{/}" class="text-decoration-none">
+            <i class="fas fa-comments fa-3x text-primary"></i>
+            <h2 class="mt-2 text-dark">Discussion Forum</h2>
+        </a>
+    </div>
+
+    <!-- Login Card -->
+    <div class="auth-card">
+        <div class="text-center mb-4">
+            <h3 class="auth-title">
+                <i class="fas fa-sign-in-alt"></i> Welcome back
+            </h3>
+            <p class="text-muted">Sign in to your account to continue</p>
+        </div>
+
+        <!-- Alert Messages -->
+        <div th:if="${param.error}" class="alert alert-error" role="alert">
+            <i class="fas fa-exclamation-triangle"></i>
+            <strong>Login failed!</strong> Invalid username or password.
+        </div>
+
+        <div th:if="${param.logout}" class="alert alert-success" role="alert">
+            <i class="fas fa-check-circle"></i>
+            <strong>Logged out successfully!</strong> You have been signed out.
+        </div>
+
+        <!-- Login Form -->
+        <form th:action="@{/login}" method="post">
+            <!-- CSRF token -->
+            <input type="hidden"
+                   th:if="${_csrf != null}"
+                   th:name="${_csrf.parameterName}"
+                   th:value="${_csrf.token}" />
+
+            <div class="form-group">
+                <label for="username" class="form-label">
+                    <i class="fas fa-user"></i> Username
+                </label>
+                <input type="text" 
+                       class="form-input" 
+                       id="username" 
+                       name="username" 
+                       placeholder="Enter your username"
+                       required 
+                       autofocus>
+            </div>
+
+            <div class="form-group">
+                <label for="password" class="form-label">
+                    <i class="fas fa-lock"></i> Password
+                </label>
+                <input type="password" 
+                       class="form-input" 
+                       id="password" 
+                       name="password" 
+                       placeholder="Enter your password"
+                       required>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="remember" name="remember">
+                    <label class="form-check-label small text-muted" for="remember">
+                        Remember me
+                    </label>
+                </div>
+                <a href="#" class="small text-primary text-decoration-none" onclick="forgotPassword()">
+                    Forgot password?
+                </a>
+            </div>
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-sign-in-alt"></i> Sign In
+                </button>
+            </div>
+        </form>
+
+        <!-- Social Login (Optional) -->
+        <div class="text-center my-4">
+            <div class="position-relative">
+                <hr>
+                <span class="position-absolute top-50 start-50 translate-middle bg-white px-3 small" style="color: #333333 !important;">
+                    or continue with
+                </span>
+            </div>
+        </div>
+
+        <div class="d-grid mb-4">
+            <button class="btn btn-outline-danger w-100" onclick="loginWithGoogle()">
+                <i class="fab fa-google"></i> Continue with Google
+            </button>
+        </div>
+
+        <!-- Sign Up Link -->
+        <div class="auth-link">
+            <p class="text-muted mb-0">
+                New to Discussion Forum? 
+                <a th:href="@{/register}" class="text-primary">
+                    <i class="fas fa-user-plus"></i> Create an account
+                </a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="text-center mt-4">
+        <p class="small text-muted">
+            By continuing, you agree to our 
+            <a href="#" class="text-decoration-none">Terms of Service</a> and 
+            <a href="#" class="text-decoration-none">Privacy Policy</a>
+        </p>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Custom JS for form validation and social login -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('form');
+    const inputs = form.querySelectorAll('input[required]');
+    
+    // Add real-time validation feedback
+    inputs.forEach(input => {
+        input.addEventListener('blur', function() {
+            if (this.value.trim() === '') {
+                this.classList.add('is-invalid');
+            } else {
+                this.classList.remove('is-invalid');
+                this.classList.add('is-valid');
+            }
+        });
+        
+        input.addEventListener('input', function() {
+            if (this.classList.contains('is-invalid')) {
+                this.classList.remove('is-invalid');
+            }
+        });
+    });
+    
+    // Form submission validation
+    form.addEventListener('submit', function(e) {
+        let isValid = true;
+        
+        inputs.forEach(input => {
+            if (input.value.trim() === '') {
+                input.classList.add('is-invalid');
+                isValid = false;
+            }
+        });
+        
+        if (!isValid) {
+            e.preventDefault();
+            // Focus on first invalid input
+            const firstInvalid = form.querySelector('.is-invalid');
+            if (firstInvalid) {
+                firstInvalid.focus();
+            }
+        }
+    });
+});
+
+// Google Login function
+function loginWithGoogle() {
+    // Show loading state
+    const btn = event.target;
+    const originalText = btn.innerHTML;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Connecting...';
+    btn.disabled = true;
+    
+    // For now, show an alert (you'll need to implement OAuth2 integration)
+    setTimeout(() => {
+        alert('Google login integration coming soon!\n\nTo implement this, you\'ll need to:\n1. Set up Google OAuth2 credentials\n2. Configure Spring Security OAuth2\n3. Add the redirect endpoints');
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+    }, 1000);
+    
+    // TODO: Replace with actual Google OAuth2 integration
+    // window.location.href = '/oauth2/authorization/google';
+}
+
+// Forgot Password function
+function forgotPassword() {
+    const email = prompt('Please enter your email address to reset your password:');
+    if (email && email.trim() !== '') {
+        if (validateEmail(email)) {
+            // Show loading state
+            const loadingDiv = document.createElement('div');
+            loadingDiv.className = 'alert alert-info mt-3';
+            loadingDiv.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending password reset email...';
+            
+            const form = document.querySelector('form');
+            form.appendChild(loadingDiv);
+            
+            // Simulate API call
+            setTimeout(() => {
+                loadingDiv.className = 'alert alert-success mt-3';
+                loadingDiv.innerHTML = '<i class="fas fa-check-circle"></i> Password reset email sent! Check your inbox.';
+                
+                setTimeout(() => {
+                    loadingDiv.remove();
+                }, 5000);
+            }, 2000);
+            
+            // TODO: Replace with actual password reset API call
+            // fetch('/api/forgot-password', { method: 'POST', body: JSON.stringify({email}), headers: {'Content-Type': 'application/json'} });
+        } else {
+            alert('Please enter a valid email address.');
+        }
+    }
+}
+
+// Email validation helper
+function validateEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+</script>
+
+</body>
+</html>
